@@ -17,7 +17,7 @@ function Book(title, author, page, read){
 function addBookToLibrary(){
     const book1 = new Book("Metro 2033", "Andrew", 345, false);
     const book2 = new Book("Metro 2034", "Andrew", 445, false);
-    const book3 = new Book("Metro 2035", "Andrew", 427, false);
+    const book3 = new Book("Metro 2035", "Andrew", 427, true);
 
     myLibrary.push(book1, book2, book3);
     
@@ -33,17 +33,57 @@ function displayBooks() {
         
         const bookTitle = document.createElement('h3');
         bookTitle.textContent = book.title;
-
+    
         const bookInfo = document.createElement('p');
         bookInfo.textContent = book.info();
 
+        const b_check = document.createElement('button');
+        if(book.read == true){
+            b_check.textContent = 'Read';
+        }
+        else{
+            b_check.textContent = 'Unread';
+        }
+
+        b_check.addEventListener("click", function() {
+            changeRead(book, b_check);
+        });
+
+        // Add book elements to the card
         bookCard.appendChild(bookTitle);
         bookCard.appendChild(bookInfo);
-
-        libraryContainer.appendChild(bookCard);
+        bookCard.appendChild(b_check);
+    
+        libraryContainer.appendChild(bookCard); // `libraryContainer`-ı burada təyin etdiyinizə əmin olun
     });
+}
+
+function changeRead(book, b_check){
+    if(book.read == true){
+        book.read = false;
+        b_check.textContent = "Unread";
+    }
+    else{
+        book.read = true;
+        b_check.textContent = "Read";
+    }
+    
 }
 
 addBookToLibrary();
 displayBooks();
-console.log(myLibrary);
+submitbut=document.getElementById('b_submit');
+console.log(submitbut);
+document.getElementById("b_submit").addEventListener("click", function () {
+    let title = document.getElementById("title").value;
+    let author = document.getElementById("author").value;
+    let pages = document.getElementById("pages").value;
+
+    const newBook = new Book(title, author, pages, false);
+
+    myLibrary.push(newBook);
+    displayBooks();
+
+
+    document.getElementById("myDialog").close(); // Dialoqu bağlayır
+});

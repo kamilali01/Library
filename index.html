@@ -5,9 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>
+    <header data-aos="fade-up" data-aos-duration="1500">
+        <div class="container">
+          <img src="./img/ebook_3363645.png" alt="Kütüphane Logo" class="logo">
+          <h1>LibroVerse</h1>
+          <button onclick="document.getElementById('myDialog').showModal()" class="add-book-btn">+Add</button>
+        </div>
+      </header>
+      
     <div class="library" id="library"></div>
+   
+    <div class="dialog-container">
+      <dialog id="myDialog">
+        <form class="form-add" action="">
+          <div class="form-group">
+            <label for="">Title</label>
+          <input id="title" required type="text">
+          </div>
+          <div class="form-group">
+            <label for="">Author</label>
+          <input id="author" required type="text">
+          </div>
+          <div class="form-group">
+            <label for="title">Pages</label>
+          <input id="pages" required minlength="12" type="number">
+          </div>
+
+          
+          <a href="javascript:void(0)" class="but b_submit" id="b_submit" type="submit" value="Add">Add</a>
+
+        </form>
+        <button class="but b_close" onclick="document.getElementById('myDialog').close()">Close</button>
+      </dialog>
+    </div>
     <script src="code.js"></script>
 </body>
 </html>
