@@ -49,10 +49,18 @@ function displayBooks() {
             changeRead(book, b_check);
         });
 
+        const b_delete = document.createElement('button');
+        b_delete.textContent = "Delete";
+
+        b_delete.addEventListener("click", function(){
+            deleteElement(book);
+        });
+
         // Add book elements to the card
         bookCard.appendChild(bookTitle);
         bookCard.appendChild(bookInfo);
         bookCard.appendChild(b_check);
+        bookCard.appendChild(b_delete);
     
         libraryContainer.appendChild(bookCard); // `libraryContainer`-ı burada təyin etdiyinizə əmin olun
     });
@@ -68,6 +76,13 @@ function changeRead(book, b_check){
         b_check.textContent = "Read";
     }
     
+}
+function deleteElement(book) {
+    const index = myLibrary.indexOf(book);
+    if (index !== -1) {
+        myLibrary.splice(index, 1); // Obyekti birbaşa silir
+    }
+    displayBooks();
 }
 
 addBookToLibrary();
